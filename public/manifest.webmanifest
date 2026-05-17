@@ -1,0 +1,19 @@
+{
+  "name": "WorthIt — Teen budgeting",
+  "short_name": "WorthIt",
+  "description": "Track spending, savings goals, and habits without the stress.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0e17",
+  "theme_color": "#33ccff",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
