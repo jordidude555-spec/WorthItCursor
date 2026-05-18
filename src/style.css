@@ -516,6 +516,12 @@ body {
   gap: 12px;
 }
 
+.home-categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .card-category {
   padding: 16px 18px;
 }
@@ -1243,6 +1249,8 @@ body {
 }
 
 .btn-soft {
+  display: inline-flex;
+  align-items: center;
   border: 1px solid rgba(51, 204, 255, 0.35);
   background: rgba(51, 204, 255, 0.1);
   color: var(--cyan);
@@ -1636,13 +1644,77 @@ body {
 }
 
 .settings-dialog {
-  max-width: 380px;
+  max-width: 420px;
 }
 
 .settings-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.settings-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-section-title {
+  margin: 0 0 4px;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.category-settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 18px;
+  background: rgba(10, 14, 23, 0.28);
+}
+
+.category-setting-row {
+  display: grid;
+  grid-template-columns: 34px 1fr minmax(92px, 28%) 42px;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-setting-number {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(51, 204, 255, 0.22);
+  border-radius: 12px;
+  color: var(--cyan);
+  background: rgba(51, 204, 255, 0.08);
+  font-weight: 800;
+}
+
+.category-delete-button {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(251, 113, 133, 0.24);
+  border-radius: 14px;
+  background: rgba(251, 113, 133, 0.08);
+  color: #fb7185;
+  cursor: pointer;
+}
+
+.category-delete-button:hover {
+  background: rgba(251, 113, 133, 0.14);
+}
+
+.settings-add-category {
+  width: 100%;
+  justify-content: center;
 }
 
 .settings-hint {
@@ -1764,8 +1836,14 @@ body {
 }
 
 @media (max-width: 380px) {
-  .field-row {
+  .field-row,
+  .category-setting-row {
     grid-template-columns: 1fr;
+  }
+
+  .category-setting-number,
+  .category-delete-button {
+    width: 100%;
   }
 }
 

@@ -89,73 +89,13 @@ document.querySelector('#app').innerHTML = `
                 <span class="donut-val" id="donut-total">$132</span>
               </div>
             </div>
-            <ul class="legend" id="spend-legend">
-              <li><span class="dot dot-cyan"></span> Food <span class="leg-amt" data-cat="Food">$43</span></li>
-              <li><span class="dot dot-purple"></span> Entertainment <span class="leg-amt" data-cat="Entertainment">$6</span></li>
-              <li><span class="dot dot-green"></span> Savings <span class="leg-amt" data-cat="Savings">$25</span></li>
-              <li><span class="dot dot-pink"></span> Shopping <span class="leg-amt" data-cat="Shopping">$38</span></li>
-              <li><span class="dot dot-muted"></span> Other <span class="leg-amt" data-cat="Other">$0</span></li>
-              <li><span class="dot dot-amber"></span> Transport <span class="leg-amt" data-cat="Transport">$20</span></li>
-            </ul>
+            <ul class="legend" id="spend-legend"></ul>
           </div>
         </article>
 
         <section class="categories-block">
           <h2 class="section-heading">Categories</h2>
-          <article class="card card-category">
-            <div class="cat-row">
-              <span class="cat-name">Food</span>
-              <span class="cat-ratio neon-muted" data-home-cat-meta="Food">$43 / $75</span>
-            </div>
-            <div class="neon-progress neon-progress-thin">
-              <div class="progress-fill" data-home-cat-bar="Food" style="width: 57%"></div>
-            </div>
-          </article>
-          <article class="card card-category">
-            <div class="cat-row">
-              <span class="cat-name">Entertainment</span>
-              <span class="cat-ratio neon-muted" data-home-cat-meta="Entertainment">$12 / $60</span>
-            </div>
-            <div class="neon-progress neon-progress-thin">
-              <div class="progress-fill progress-fill-purple" data-home-cat-bar="Entertainment" style="width: 20%"></div>
-            </div>
-          </article>
-          <article class="card card-category">
-            <div class="cat-row">
-              <span class="cat-name">Savings</span>
-              <span class="cat-ratio neon-muted" data-home-cat-meta="Savings">$0 / $100</span>
-            </div>
-            <div class="neon-progress neon-progress-thin">
-              <div class="progress-fill progress-fill-green" data-home-cat-bar="Savings" style="width: 0%"></div>
-            </div>
-          </article>
-          <article class="card card-category">
-            <div class="cat-row">
-              <span class="cat-name">Shopping</span>
-              <span class="cat-ratio neon-muted" data-home-cat-meta="Shopping">$38 / $75</span>
-            </div>
-            <div class="neon-progress neon-progress-thin">
-              <div class="progress-fill progress-fill-pink" data-home-cat-bar="Shopping" style="width: 51%"></div>
-            </div>
-          </article>
-          <article class="card card-category">
-            <div class="cat-row">
-              <span class="cat-name">Transport</span>
-              <span class="cat-ratio neon-muted" data-home-cat-meta="Transport">$16 / $50</span>
-            </div>
-            <div class="neon-progress neon-progress-thin">
-              <div class="progress-fill progress-fill-amber" data-home-cat-bar="Transport" style="width: 32%"></div>
-            </div>
-          </article>
-          <article class="card card-category">
-            <div class="cat-row">
-              <span class="cat-name">Other</span>
-              <span class="cat-ratio neon-muted" data-home-cat-meta="Other">$0 / $40</span>
-            </div>
-            <div class="neon-progress neon-progress-thin">
-              <div class="progress-fill progress-fill-muted" data-home-cat-bar="Other" style="width: 0%"></div>
-            </div>
-          </article>
+          <div class="home-categories-list" id="home-categories"></div>
         </section>
       </section>
 
@@ -191,15 +131,7 @@ document.querySelector('#app').innerHTML = `
           />
         </div>
 
-        <div class="activity-filters" role="group" aria-label="Filter by category">
-          <button type="button" class="filter-pill is-active" data-filter="All">All</button>
-          <button type="button" class="filter-pill" data-filter="Food">Food</button>
-          <button type="button" class="filter-pill" data-filter="Entertainment">Entertainment</button>
-          <button type="button" class="filter-pill" data-filter="Savings">Savings</button>
-          <button type="button" class="filter-pill" data-filter="Shopping">Shopping</button>
-          <button type="button" class="filter-pill" data-filter="Other">Other</button>
-          <button type="button" class="filter-pill" data-filter="Transport">Transport</button>
-        </div>
+        <div class="activity-filters" role="group" aria-label="Filter by category"></div>
 
         <div id="activity-groups" class="activity-groups"></div>
       </section>
@@ -386,14 +318,7 @@ document.querySelector('#app').innerHTML = `
             <div class="field field-grow">
               <label class="field-label" for="log-category">Category</label>
               <div class="select-wrap">
-                <select class="field-select" id="log-category" name="category">
-                  <option value="Food">Food</option>
-                  <option value="Entertainment">Entertainment</option>
-                  <option value="Savings">Savings</option>
-                  <option value="Shopping">Shopping</option>
-                  <option value="Other">Other</option>
-                  <option value="Transport">Transport</option>
-                </select>
+                <select class="field-select" id="log-category" name="category"></select>
                 <span class="select-chevron">${icon.chevron}</span>
               </div>
             </div>
@@ -455,6 +380,18 @@ document.querySelector('#app').innerHTML = `
               placeholder="300"
             />
           </div>
+          <section class="settings-categories" aria-labelledby="settings-categories-title">
+            <div>
+              <h3 class="settings-section-title" id="settings-categories-title">Home categories</h3>
+              <p class="settings-hint neon-muted">
+                Rename the Home cards and set a budget for each category.
+              </p>
+            </div>
+            <div class="category-settings-list" id="category-settings-list"></div>
+            <button type="button" class="btn-soft settings-add-category" id="add-category-button">
+              Add category
+            </button>
+          </section>
           <p class="settings-hint neon-muted">
             These settings only affect this demo and are saved in this browser.
           </p>
@@ -532,35 +469,46 @@ function registerServiceWorker() {
   })
 }
 
+const CATEGORY_PALETTE = ['#33ccff', '#a78bfa', '#34d399', '#fb7185', '#fbbf24', '#94a3b8']
+
+const DEFAULT_CATEGORIES = [
+  { id: 'Food', label: 'Food', budget: 75, color: '#33ccff' },
+  { id: 'Entertainment', label: 'Entertainment', budget: 60, color: '#a78bfa' },
+  { id: 'Savings', label: 'Savings', budget: 100, color: '#34d399' },
+  { id: 'Shopping', label: 'Shopping', budget: 75, color: '#fb7185' },
+  { id: 'Transport', label: 'Transport', budget: 50, color: '#fbbf24' },
+  { id: 'Other', label: 'Other', budget: 40, color: '#94a3b8' },
+]
+
 const DEFAULT_SETTINGS = {
   displayName: '',
   monthlyBudget: 300,
+  categories: DEFAULT_CATEGORIES,
 }
 
 let appSettings = loadSettings()
 let monthlyBudget = appSettings.monthlyBudget
-
-const CATEGORY_BUDGETS = {
-  Food: 75,
-  Entertainment: 60,
-  Savings: 100,
-  Shopping: 75,
-  Other: 40,
-  Transport: 50,
-}
-
-const CATEGORY_KEYS = Object.keys(CATEGORY_BUDGETS)
+let appCategories = appSettings.categories
+let settingsDraftCategories = []
 
 function loadSettings() {
   try {
     const saved = JSON.parse(localStorage.getItem('worthit-settings') || '{}')
+    const savedCategories = Array.isArray(saved.categories)
+      ? saved.categories
+      : migrateOldCategorySettings(saved)
+
     return {
       ...DEFAULT_SETTINGS,
       ...saved,
+      categories: normalizeCategories(savedCategories),
       monthlyBudget: Number(saved.monthlyBudget) > 0 ? Number(saved.monthlyBudget) : 300,
     }
   } catch {
-    return { ...DEFAULT_SETTINGS }
+    return {
+      ...DEFAULT_SETTINGS,
+      categories: DEFAULT_CATEGORIES.map((cat) => ({ ...cat })),
+    }
   }
 }
 
@@ -570,7 +518,47 @@ function saveSettings(nextSettings) {
     ...nextSettings,
   }
   monthlyBudget = Number(appSettings.monthlyBudget) > 0 ? Number(appSettings.monthlyBudget) : 300
+  appCategories = normalizeCategories(appSettings.categories)
+  appSettings.categories = appCategories
   localStorage.setItem('worthit-settings', JSON.stringify(appSettings))
+}
+
+function migrateOldCategorySettings(saved) {
+  const labels = saved.categoryLabels || {}
+  const budgets = saved.categoryBudgets || {}
+  return DEFAULT_CATEGORIES.map((cat) => ({
+    ...cat,
+    label: labels[cat.id] || cat.label,
+    budget: Number(budgets[cat.id]) > 0 ? Number(budgets[cat.id]) : cat.budget,
+  }))
+}
+
+function normalizeCategories(categories) {
+  const seen = new Set()
+  const normalized = []
+
+  for (const [index, cat] of (categories || []).entries()) {
+    const fallback = DEFAULT_CATEGORIES[index] || {}
+    const id = String(cat.id || fallback.id || `Custom-${Date.now()}-${index}`)
+    if (seen.has(id)) continue
+    seen.add(id)
+    normalized.push({
+      id,
+      label: String(cat.label || fallback.label || 'New category').trim() || 'New category',
+      budget: Number(cat.budget) > 0 ? Number(cat.budget) : Number(fallback.budget) || 50,
+      color: cat.color || fallback.color || CATEGORY_PALETTE[index % CATEGORY_PALETTE.length],
+    })
+  }
+
+  return normalized.length ? normalized : DEFAULT_CATEGORIES.map((cat) => ({ ...cat }))
+}
+
+function categoryKeys() {
+  return appCategories.map((cat) => cat.id)
+}
+
+function categoryById(id) {
+  return appCategories.find((cat) => cat.id === id)
 }
 
 function dateKeyFromDate(d) {
@@ -616,21 +604,12 @@ let activityFilter = 'All'
 let activitySearch = ''
 
 function getCategoryTotals() {
-  const totals = Object.fromEntries(CATEGORY_KEYS.map((k) => [k, 0]))
+  const totals = Object.fromEntries(categoryKeys().map((k) => [k, 0]))
   for (const t of transactions) {
     if (totals[t.category] !== undefined) totals[t.category] += t.amount
   }
   return totals
 }
-
-const DONUT_ORDER = [
-  ['Food', '#33ccff'],
-  ['Entertainment', '#a78bfa'],
-  ['Savings', '#34d399'],
-  ['Shopping', '#fb7185'],
-  ['Other', '#94a3b8'],
-  ['Transport', '#fbbf24'],
-]
 
 function money(amount) {
   return `$${Number(amount).toFixed(2)}`
@@ -680,17 +659,125 @@ function buildDonutBackground() {
   const gapDeg = 0
   let acc = 0
   const parts = []
-  for (const [key, color] of DONUT_ORDER) {
-    const v = totals[key] || 0
+  for (const category of appCategories) {
+    const v = totals[category.id] || 0
     if (v <= 0) continue
     const startDeg = acc * 360
     acc += v / total
     const endDeg = acc * 360
     const sliceEndDeg = Math.max(startDeg, endDeg - gapDeg)
-    parts.push(`${color} ${startDeg}deg ${sliceEndDeg}deg`)
+    parts.push(`${category.color} ${startDeg}deg ${sliceEndDeg}deg`)
     parts.push(`#0a0e17 ${sliceEndDeg}deg ${endDeg}deg`)
   }
   return `conic-gradient(${parts.join(', ')})`
+}
+
+function renderCategoryUi() {
+  renderSpendLegend()
+  renderHomeCategories()
+  renderLogCategoryOptions()
+  renderActivityFilters()
+}
+
+function renderSpendLegend() {
+  const legend = document.getElementById('spend-legend')
+  if (!legend) return
+
+  legend.innerHTML = appCategories
+    .map(
+      (cat) => `
+        <li>
+          <span class="dot" style="background: ${cat.color}"></span>
+          ${escapeHtml(cat.label)}
+          <span class="leg-amt" data-cat="${cat.id}">$0.00</span>
+        </li>
+      `
+    )
+    .join('')
+}
+
+function renderHomeCategories() {
+  const container = document.getElementById('home-categories')
+  if (!container) return
+
+  container.innerHTML = appCategories
+    .map(
+      (cat) => `
+        <article class="card card-category">
+          <div class="cat-row">
+            <span class="cat-name">${escapeHtml(cat.label)}</span>
+            <span class="cat-ratio neon-muted" data-home-cat-meta="${cat.id}">$0.00 / ${money(cat.budget)}</span>
+          </div>
+          <div class="neon-progress neon-progress-thin">
+            <div class="progress-fill" data-home-cat-bar="${cat.id}" style="width: 0%; background: linear-gradient(90deg, ${cat.color}, ${cat.color})"></div>
+          </div>
+        </article>
+      `
+    )
+    .join('')
+}
+
+function renderLogCategoryOptions() {
+  const select = document.getElementById('log-category')
+  if (!select) return
+
+  const previous = select.value
+  select.innerHTML = appCategories
+    .map((cat) => `<option value="${cat.id}">${escapeHtml(cat.label)}</option>`)
+    .join('')
+
+  if (appCategories.some((cat) => cat.id === previous)) {
+    select.value = previous
+  }
+}
+
+function renderActivityFilters() {
+  const filters = document.querySelector('.activity-filters')
+  if (!filters) return
+
+  if (activityFilter !== 'All' && !appCategories.some((cat) => cat.id === activityFilter)) {
+    activityFilter = 'All'
+  }
+
+  filters.innerHTML = [
+    `<button type="button" class="filter-pill ${activityFilter === 'All' ? 'is-active' : ''}" data-filter="All">All</button>`,
+    ...appCategories.map(
+      (cat) =>
+        `<button type="button" class="filter-pill ${activityFilter === cat.id ? 'is-active' : ''}" data-filter="${cat.id}">${escapeHtml(cat.label)}</button>`
+    ),
+  ].join('')
+
+  wireActivityFilterButtons()
+}
+
+function renderSettingsCategoryRows() {
+  const list = document.getElementById('category-settings-list')
+  if (!list) return
+
+  list.innerHTML = settingsDraftCategories
+    .map(
+      (cat, index) => `
+        <div class="category-setting-row" data-category-row="${cat.id}">
+          <span class="category-setting-number">${index + 1}</span>
+          <input class="field-input" data-setting-cat-label="${cat.id}" type="text" value="${escapeHtml(cat.label)}" aria-label="Category ${index + 1} name" />
+          <input class="field-input" data-setting-cat-budget="${cat.id}" type="number" min="1" step="1" inputmode="decimal" value="${cat.budget}" aria-label="Category ${index + 1} budget" />
+          <button type="button" class="category-delete-button" data-delete-category="${cat.id}" aria-label="Delete ${escapeHtml(cat.label)}">
+            ${icon.trash}
+          </button>
+        </div>
+      `
+    )
+    .join('')
+}
+
+function createCategory() {
+  const id = `Custom-${Date.now()}`
+  return {
+    id,
+    label: 'New category',
+    budget: 50,
+    color: CATEGORY_PALETTE[settingsDraftCategories.length % CATEGORY_PALETTE.length],
+  }
 }
 
 function showToastMessage(message) {
@@ -702,15 +789,6 @@ function showToastMessage(message) {
   showToastMessage._t = window.setTimeout(() => {
     toast.hidden = true
   }, 2800)
-}
-
-const CATEGORY_BADGE = {
-  Food: 'F',
-  Entertainment: 'E',
-  Savings: 'S',
-  Shopping: 'P',
-  Other: 'O',
-  Transport: 'T',
 }
 
 function formatGroupLabel(dateKey) {
@@ -736,7 +814,9 @@ function filteredTransactions() {
   const q = activitySearch.trim().toLowerCase()
   if (q) {
     list = list.filter(
-      (t) => t.label.toLowerCase().includes(q) || t.category.toLowerCase().includes(q)
+      (t) =>
+        t.label.toLowerCase().includes(q) ||
+        (categoryById(t.category)?.label || t.category).toLowerCase().includes(q)
     )
   }
   list.sort((a, b) => {
@@ -764,7 +844,7 @@ function renderActivityList() {
   if (avgEl) avgEl.textContent = money(avg)
   if (scopeEl) {
     if (activityFilter === 'All' && !activitySearch.trim()) scopeEl.textContent = 'all categories'
-    else if (activityFilter !== 'All') scopeEl.textContent = activityFilter
+    else if (activityFilter !== 'All') scopeEl.textContent = categoryById(activityFilter)?.label || activityFilter
     else scopeEl.textContent = 'search results'
   }
 
@@ -788,14 +868,16 @@ function renderActivityList() {
 
     const rowHtml = rows
       .map((t) => {
-        const letter = CATEGORY_BADGE[t.category] || t.category.charAt(0)
+        const category = categoryById(t.category)
+        const label = category?.label || t.category
+        const letter = label.charAt(0).toUpperCase()
         const bClass = badgeClass(t.category)
         return `
             <li class="activity-tx card glass">
               <span class="tx-badge tx-badge-${bClass}" aria-hidden="true">${letter}</span>
               <div class="tx-body">
                 <p class="tx-title">${escapeHtml(t.label)}</p>
-                <p class="tx-sub neon-muted">${escapeHtml(t.category)}</p>
+                <p class="tx-sub neon-muted">${escapeHtml(label)}</p>
               </div>
               <div class="tx-actions">
                 <span class="tx-amt">-${money(t.amount)}</span>
@@ -843,6 +925,10 @@ function wireActivityUi() {
     renderActivityList()
   })
 
+  wireActivityFilterButtons()
+}
+
+function wireActivityFilterButtons() {
   document.querySelectorAll('.activity-filters .filter-pill').forEach((btn) => {
     btn.addEventListener('click', () => {
       activityFilter = btn.dataset.filter || 'All'
@@ -1016,13 +1102,13 @@ function syncDashboardFromState() {
 
   document.querySelectorAll('[data-home-cat-meta]').forEach((el) => {
     const key = el.dataset.homeCatMeta
-    const cap = CATEGORY_BUDGETS[key] || 1
+    const cap = categoryById(key)?.budget || 1
     el.textContent = `${money(totals[key] || 0)} / ${money(cap)}`
   })
 
   document.querySelectorAll('[data-home-cat-bar]').forEach((el) => {
     const key = el.dataset.homeCatBar
-    const cap = CATEGORY_BUDGETS[key] || 1
+    const cap = categoryById(key)?.budget || 1
     el.style.width = `${Math.min(100, ((totals[key] || 0) / cap) * 100)}%`
   })
 }
@@ -1056,6 +1142,9 @@ function openSettingsModal() {
 
   if (nameInput) nameInput.value = appSettings.displayName || ''
   if (budgetInput) budgetInput.value = String(monthlyBudget)
+  settingsDraftCategories = appCategories.map((cat) => ({ ...cat }))
+  renderSettingsCategoryRows()
+
   modal.hidden = false
   app?.classList.add('modal-open')
   window.setTimeout(() => nameInput?.focus(), 10)
@@ -1073,6 +1162,8 @@ function closeSettingsModal() {
 function wireSettingsModal() {
   const modal = document.getElementById('settings-modal')
   const form = document.getElementById('settings-form')
+  const addCategoryButton = document.getElementById('add-category-button')
+  const categoryList = document.getElementById('category-settings-list')
 
   document.querySelectorAll('[data-open-settings-modal]').forEach((btn) => {
     btn.addEventListener('click', () => openSettingsModal())
@@ -1089,11 +1180,32 @@ function wireSettingsModal() {
     }
   })
 
+  addCategoryButton?.addEventListener('click', () => {
+    settingsDraftCategories.push(createCategory())
+    renderSettingsCategoryRows()
+  })
+
+  categoryList?.addEventListener('click', (e) => {
+    const deleteButton = e.target.closest('[data-delete-category]')
+    if (!deleteButton) return
+
+    if (settingsDraftCategories.length <= 1) {
+      showToastMessage('Keep at least one category.')
+      return
+    }
+
+    settingsDraftCategories = settingsDraftCategories.filter(
+      (cat) => cat.id !== deleteButton.dataset.deleteCategory
+    )
+    renderSettingsCategoryRows()
+  })
+
   form?.addEventListener('submit', (e) => {
     e.preventDefault()
     const nameInput = document.getElementById('setting-name')
     const budgetInput = document.getElementById('setting-budget')
     const nextBudget = Number(budgetInput?.value || 0)
+    const nextCategories = []
 
     if (!(nextBudget > 0)) {
       showToastMessage('Monthly budget needs to be above zero.')
@@ -1101,11 +1213,37 @@ function wireSettingsModal() {
       return
     }
 
+    for (const draftCategory of settingsDraftCategories) {
+      const labelInput = document.querySelector(`[data-setting-cat-label="${draftCategory.id}"]`)
+      const budgetInput = document.querySelector(`[data-setting-cat-budget="${draftCategory.id}"]`)
+      const label = labelInput?.value.trim() || draftCategory.label
+      const value = Number(budgetInput?.value || 0)
+      if (!(value > 0)) {
+        showToastMessage(`${label} budget needs to be above zero.`)
+        budgetInput?.focus()
+        return
+      }
+      nextCategories.push({
+        ...draftCategory,
+        label,
+        budget: value,
+      })
+    }
+
+    const nextCategoryIds = new Set(nextCategories.map((cat) => cat.id))
+    const fallbackCategory = nextCategories[0]?.id
+    transactions.forEach((tx) => {
+      if (!nextCategoryIds.has(tx.category) && fallbackCategory) tx.category = fallbackCategory
+    })
+
     saveSettings({
       displayName: nameInput?.value.trim() || '',
       monthlyBudget: nextBudget,
+      categories: nextCategories,
     })
+    renderCategoryUi()
     syncDashboardFromState()
+    renderActivityList()
     closeSettingsModal()
     showToastMessage('Settings saved.')
   })
@@ -1137,7 +1275,7 @@ function wireLogModal() {
     const priceInput = document.getElementById('log-price')
 
     const what = whatInput?.value.trim() || ''
-    const cat = catInput?.value || 'Food'
+    const cat = catInput?.value || appCategories[0]?.id || 'Food'
     const price = parseFloat(priceInput?.value || '0')
 
     if (!what) {
@@ -1162,7 +1300,7 @@ function wireLogModal() {
 
     renderActivityList()
     syncDashboardFromState()
-    showToastMessage(`Saved ${money(price)} under ${cat}.`)
+    showToastMessage(`Saved ${money(price)} under ${categoryById(cat)?.label || cat}.`)
     closeLogModal()
   })
 }
@@ -1176,6 +1314,7 @@ wireActivityUi()
 wireCoachUi()
 wireAiSwitch()
 wireValueFinderUi()
+renderCategoryUi()
 syncDashboardFromState()
 renderActivityList()
 showAiMode('coach')
