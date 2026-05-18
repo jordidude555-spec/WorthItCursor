@@ -56,7 +56,26 @@ Item: ${item}
 Max budget: ${budget || 'not provided'}
 Main use: ${mainUse}
 
-Include what to prioritize, 2-3 realistic budget-friendly options or types to compare, red flags to avoid, and one clear WorthIt pick.
+Rank 2-3 realistic products or product types using this formula:
+ValueScore = ((Quality * 0.4) + (Durability * 0.3) + (Usefulness * 0.3)) / Price
+DisplayScore = ValueScore * 1000
+
+Quality, Durability, and Usefulness must each be scored from 1-10.
+Usefulness must be based on the user's stated purpose, not generic features.
+Prioritize the best mix of price and quality, not just the cheapest item.
+
+For each product, show:
+- Price
+- Quality score
+- Durability score
+- Usefulness score
+- ValueScore
+- DisplayScore
+- Main pros
+- Main downside
+- WorthIt verdict
+
+Keep the answer short and teen-friendly.
 Do not invent live prices or claim you searched the web. Say to compare current prices before buying.
 `
   }
