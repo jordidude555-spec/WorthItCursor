@@ -321,7 +321,7 @@ document.querySelector('#app').innerHTML = `
           </form>
 
           <article class="value-result card glass" id="value-result" hidden>
-            <p class="response-kicker">Smartest buy guide</p>
+            <p class="response-kicker">WorthIt results</p>
             <div class="response-text" id="value-result-text"></div>
           </article>
 

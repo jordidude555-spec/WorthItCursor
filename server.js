@@ -68,26 +68,66 @@ Item: ${item}
 Max budget: ${budget || 'not provided'}
 Main use: ${mainUse}
 
-Rank 2-3 realistic products or product types using this formula:
+Rank 2-3 real products when possible using this internal formula:
 ValueScore = ((Quality * 0.4) + (Durability * 0.3) + (Usefulness * 0.3)) / Price
 DisplayScore = ValueScore * 1000
 
-Quality, Durability, and Usefulness must each be scored from 1-10.
-Usefulness must be based on the user's stated purpose, not generic features.
-Prioritize the best mix of price and quality, not just the cheapest item.
+Quality, Durability, and Usefulness are internal scores from 1-10.
+Usefulness must be based on the user's stated purpose. For example, if the user wants headphones for gym and audio, secure fit and sweat resistance matter more than luxury features.
+Prioritize best value, not just highest quality and not just the cheapest item.
+Do not show the raw ValueScore decimal.
+Only show WorthIt Score out of 100, based on DisplayScore. Round the score and cap it at 100 if needed.
 
-For each product, show:
-- Price
-- Quality score
-- Durability score
-- Usefulness score
-- ValueScore
-- DisplayScore
-- Main pros
-- Main downside
-- WorthIt verdict
+Use this exact structure:
 
-Keep the answer short and teen-friendly.
+🏆 Best Value Pick
+[Product name] — [$Price]
+WorthIt Score: [score]/100
+
+Why it’s worth it:
+[1 short sentence]
+
+Tradeoff:
+[1 short sentence]
+
+---
+
+Top Options
+
+1. [Product name]
+Price: [$]
+WorthIt Score: [score]/100
+Best for: [use case]
+Pros: [2–3 short pros]
+Watch out for: [1 downside]
+
+2. [Product name]
+Price: [$]
+WorthIt Score: [score]/100
+Best for: [use case]
+Pros: [2–3 short pros]
+Watch out for: [1 downside]
+
+3. [Product name]
+Price: [$]
+WorthIt Score: [score]/100
+Best for: [use case]
+Pros: [2–3 short pros]
+Watch out for: [1 downside]
+
+Final take:
+[One clear sentence telling the user what to buy based on their needs.]
+
+Rules:
+- Do not show the raw ValueScore decimal.
+- Only show WorthIt Score out of 100.
+- Keep each product section under 5 lines.
+- Avoid long paragraphs.
+- Do not say "Okay, let’s break down."
+- Do not use "Smartest buy guide."
+- Do not say "like [product] type." Use real product names when possible.
+- If prices are estimates, say "around."
+- Prioritize best value, not just highest quality.
 Do not invent live prices or claim you searched the web. Say to compare current prices before buying.
 `
   }
